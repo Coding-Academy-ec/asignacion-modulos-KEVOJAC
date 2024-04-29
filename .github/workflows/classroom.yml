@@ -1,0 +1,29 @@
+name: Autograding Tests
+'on':
+- push
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Test modulos
+      id: test-modulos
+      uses: education/autograding-python-grader@v1
+      with:
+        timeout: 1
+        max-score: 100
+        setup-command: python -m unittest
+    - name: Autograding Reporter
+      uses: education/autograding-grading-reporter@v1
+      env:
+        TEST-MODULOS_RESULTS: "${{steps.test-modulos.outputs.result}}"
+      with:
+        runners: test-modulos

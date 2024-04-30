@@ -1,14 +1,18 @@
 def suma(a, b):
-    pass # Return de la suma
+    s=a+b 
+    return s# Return de la suma
 
 def resta(a, b):
-    pass # Return de la resta
+    r=a-b
+    return r# Return de la resta
 
 def multiplicacion(a, b):
-    pass # Return de la multiplicación
+    m=a*b
+    return m# Return de la multiplicación
 
 def division(a, b):
     if b != 0:
-        pass # Return de la división
+        di = a/b
+        return di # Return de la división
     else:
-        pass # Return de error
+        return "Error: división por cero"# Return de error
